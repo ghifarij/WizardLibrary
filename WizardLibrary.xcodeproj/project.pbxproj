@@ -6,8 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FEAE02AD2ED36271007CB82E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FEAE02AC2ED36271007CB82E /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		FEAE02572ED31927007CB82E /* WizardLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEAE02572ED31927007CB82E /* WizardLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WizardLibrary.app; path = "/Users/afgaghifari/Projects/Learning/WizardLibrary/build/Debug-iphoneos/WizardLibrary.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEAE02AD2ED36271007CB82E /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,16 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				FEAE02592ED31927007CB82E /* WizardLibrary */,
-				FEAE02582ED31927007CB82E /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		FEAE02582ED31927007CB82E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FEAE02572ED31927007CB82E /* WizardLibrary.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,6 +61,7 @@
 			);
 			name = WizardLibrary;
 			packageProductDependencies = (
+				FEAE02AC2ED36271007CB82E /* Kingfisher */,
 			);
 			productName = WizardLibrary;
 			productReference = FEAE02572ED31927007CB82E /* WizardLibrary.app */;
@@ -94,8 +91,11 @@
 			);
 			mainGroup = FEAE024E2ED31927007CB82E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FEAE02AB2ED36271007CB82E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = FEAE02582ED31927007CB82E /* Products */;
+			productRefGroup = FEAE024E2ED31927007CB82E;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -332,6 +332,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FEAE02AB2ED36271007CB82E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FEAE02AC2ED36271007CB82E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEAE02AB2ED36271007CB82E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FEAE024F2ED31927007CB82E /* Project object */;
 }
