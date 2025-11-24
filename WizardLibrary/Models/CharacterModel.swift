@@ -7,9 +7,20 @@
 
 import Foundation
 
-// MARK: - Character attributes from PotterDB
+// MARK: - API Response with Pagination (JSON:API format)
 
-struct PotterCharacterAttributes: Codable {
+struct PotterCharacterResponse: Codable, Equatable {
+    let data: [CharacterResource]
+    let meta: PotterPagination
+}
+
+struct CharacterResource: Codable, Equatable {
+    let id: String
+    let type: String
+    let attributes: CharacterAttributes
+}
+
+struct CharacterAttributes: Codable, Equatable {
     let aliasNames: [String]?
     let animagus: String?
     let bloodStatus: String?
@@ -63,62 +74,78 @@ struct PotterCharacterAttributes: Codable {
     }
 }
 
-// MARK: - Domain model
+struct PotterPagination: Codable, Equatable {
+    let pagination: PaginationDetails
+}
+
+struct PaginationDetails: Codable, Equatable {
+    let current: Int
+    let last: Int
+    let records: Int
+    
+    var hasNextPage: Bool {
+        current < last
+    }
+}
+
+// MARK: - Domain Model
 
 struct Character: Identifiable, Equatable {
     let id: String
-    let name: String
-    let house: String?
-    let imageURL: String?
+    let aliasNames: [String]?
+    let animagus: String?
     let bloodStatus: String?
-    let gender: String?
+    let boggart: String?
     let born: String?
     let died: String?
+    let eyeColor: String?
+    let familyMembers: [String]?
+    let gender: String?
+    let hairColor: String?
+    let height: String?
+    let house: String?
+    let imageURL: String?
+    let jobs: [String]?
+    let name: String
     let nationality: String?
     let patronus: String?
-    let eyeColor: String?
-    let hairColor: String?
-    let skinColor: String?
-    let height: String?
-    let weight: String?
-    let animagus: String?
-    let boggart: String?
-    let aliasNames: [String]?
-    let familyMembers: [String]?
-    let jobs: [String]?
     let romances: [String]?
+    let skinColor: String?
     let species: String?
     let titles: [String]?
     let wand: [String]?
+    let weight: String?
+    let slug: String
 }
 
-extension PotterResource where Attributes == PotterCharacterAttributes {
+extension CharacterResource {
     func toDomain() -> Character {
         Character(
             id: id,
-            name: attributes.name,
-            house: attributes.house,
-            imageURL: attributes.imageURL,
+            aliasNames: attributes.aliasNames,
+            animagus: attributes.animagus,
             bloodStatus: attributes.bloodStatus,
-            gender: attributes.gender,
+            boggart: attributes.boggart,
             born: attributes.born,
             died: attributes.died,
+            eyeColor: attributes.eyeColor,
+            familyMembers: attributes.familyMembers,
+            gender: attributes.gender,
+            hairColor: attributes.hairColor,
+            height: attributes.height,
+            house: attributes.house,
+            imageURL: attributes.imageURL,
+            jobs: attributes.jobs,
+            name: attributes.name,
             nationality: attributes.nationality,
             patronus: attributes.patronus,
-            eyeColor: attributes.eyeColor,
-            hairColor: attributes.hairColor,
-            skinColor: attributes.skinColor,
-            height: attributes.height,
-            weight: attributes.weight,
-            animagus: attributes.animagus,
-            boggart: attributes.boggart,
-            aliasNames: attributes.aliasNames,
-            familyMembers: attributes.familyMembers,
-            jobs: attributes.jobs,
             romances: attributes.romances,
+            skinColor: attributes.skinColor,
             species: attributes.species,
             titles: attributes.titles,
-            wand: attributes.wand
+            wand: attributes.wand,
+            weight: attributes.weight,
+            slug: attributes.slug
         )
     }
 }

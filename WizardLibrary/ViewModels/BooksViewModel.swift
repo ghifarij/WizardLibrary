@@ -26,7 +26,7 @@ class BooksViewModel: ObservableObject {
         
         let endpoint = BooksEndpoint.getBooks.endpoint
         
-        networkService.request(endpoint, responseType: PotterListResponse<PotterBookAttributes>.self)
+        networkService.request(endpoint, responseType: PotterBookResponse<PotterBookAttributes>.self)
             .map { response in
                 response.data.map { $0.toDomain() }
             }

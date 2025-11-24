@@ -11,7 +11,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FEAE02572ED31927007CB82E /* WizardLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WizardLibrary.app; path = "/Users/afgaghifari/Projects/Learning/WizardLibrary/build/Debug-iphoneos/WizardLibrary.app"; sourceTree = "<absolute>"; };
+		FEAE02B52ED36965007CB82E /* WizardLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,6 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				FEAE02592ED31927007CB82E /* WizardLibrary */,
+				FEAE02B52ED36965007CB82E /* WizardLibrary.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,7 +65,7 @@
 				FEAE02AC2ED36271007CB82E /* Kingfisher */,
 			);
 			productName = WizardLibrary;
-			productReference = FEAE02572ED31927007CB82E /* WizardLibrary.app */;
+			productReference = FEAE02B52ED36965007CB82E /* WizardLibrary.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

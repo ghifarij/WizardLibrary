@@ -5,18 +5,19 @@
 //  Created by Afga Ghifari on 23/11/25.
 //
 
+
 enum CharactersEndpoint {
-    case getCharacters
+    case getCharacters(page: Int)
     case getCharacter(id: Int)
     
     var endpoint: Endpoint {
         switch self {
-        case.getCharacters:
+        case.getCharacters(let page):
             return Endpoint(
                 path: "/characters",
                 method: .GET,
                 headers: ["Content-Type": "application/json"],
-                parameters: nil
+                parameters: ["page[number]": String(page)]
             )
             
         case .getCharacter(let id):

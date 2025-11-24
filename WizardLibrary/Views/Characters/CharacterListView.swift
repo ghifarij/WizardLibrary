@@ -13,7 +13,7 @@ struct CharacterListView: View {
     var body: some View {
         NavigationStack {
             Group {
-                if viewModel.isLoading {
+                if viewModel.isLoading && viewModel.characters.isEmpty {
                     ProgressView()
                 } else if let error = viewModel.errorMessage {
                     Text(error)
@@ -26,6 +26,11 @@ struct CharacterListView: View {
                         ], spacing: 12) {
                             ForEach(viewModel.characters) { character in
                                 CharacterGridView(character: character)
+                                    .onAppear {
+                                        if character.id == viewModel.characters.last?.id {
+                                            viewModel.loadMoreCharacters()
+                                        }
+                                    }
                             }
                         }
                         .padding()
@@ -35,7 +40,9 @@ struct CharacterListView: View {
             .navigationTitle("Characters")
         }
         .onAppear {
-            viewModel.fetchCharacters()
+            if viewModel.characters.isEmpty {
+                viewModel.fetchCharacters()
+            }
         }
     }
 }

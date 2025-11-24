@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Generic JSON:API list response
 
-struct PotterListResponse<Attributes: Codable>: Codable {
+struct PotterBookResponse<Attributes: Codable>: Codable {
     let data: [PotterResource<Attributes>]
 }
 
