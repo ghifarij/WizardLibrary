@@ -2,7 +2,8 @@
 <tr>
 <td width="140">
 
-<img width="128" height="128" alt="WizardLibrary Icon" src="/mnt/data/screenshot_small_512.png" />
+<img width="128" height="128" alt="WizardLibrary Icon-iOS-Default-1024x1024@1x" src="https://github.com/user-attachments/assets/657abd4a-1f5d-4130-81ca-90926959f7c1" />
+
 
 </td>
 <td>
