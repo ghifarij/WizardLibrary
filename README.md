@@ -1,5 +1,5 @@
 
-<img width="1024" height="1024" alt="WizardLibrary Icon-iOS-Default-1024x1024@1x" src="https://github.com/user-attachments/assets/960e0f73-5cc4-4cb4-89db-0b16d4b2d39e" />
+<img width="256" height="256" alt="WizardLibrary Icon-iOS-Default-1024x1024@1x" src="https://github.com/user-attachments/assets/960e0f73-5cc4-4cb4-89db-0b16d4b2d39e" />
 
 # 🧙‍♂️ WizardLibrary
 
