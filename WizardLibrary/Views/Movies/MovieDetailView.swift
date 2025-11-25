@@ -14,8 +14,11 @@ struct MovieDetailView: View {
     var body: some View {
         ScrollView {
             if viewModel.isLoading {
-                ProgressView()
-                    .padding()
+                VStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
             } else if let errorMessage = viewModel.errorMessage {
                 VStack {
                     Image(systemName: "exclamationmark.triangle")
@@ -38,9 +41,13 @@ struct MovieDetailView: View {
                                     .resizable()
                             },
                             placeholder: {
-                                ProgressView()
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 400)
+                                VStack {
+                                    Spacer()
+                                    ProgressView()
+                                    Spacer()
+                                }
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 400)
                             }
                         )
                         .scaledToFit()

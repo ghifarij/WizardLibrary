@@ -87,4 +87,11 @@ class CharactersViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func resetToFirstPage() {
+        characters.removeAll()
+        currentPage = 1
+        hasNextPage = true
+        fetchCharacters()
+    }
 }

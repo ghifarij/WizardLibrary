@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct MovieListView: View {
-    @StateObject private var viewModel = MoviesViewModel()
+    @EnvironmentObject var viewModel: MoviesViewModel
     
     var body: some View {
         NavigationStack {
             Group {
                 if viewModel.isLoading && viewModel.movies.isEmpty {
-                    ProgressView()
+                    VStack {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    }
                 } else if let error = viewModel.errorMessage {
                     Text(error)
                         .foregroundStyle(.red)
@@ -34,11 +38,6 @@ struct MovieListView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Movies")
-        }
-        .onAppear {
-            if viewModel.movies.isEmpty {
-                viewModel.fetchMovies()
-            }
         }
     }
 }

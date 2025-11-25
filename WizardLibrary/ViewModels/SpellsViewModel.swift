@@ -87,4 +87,11 @@ class SpellsViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func resetToFirstPage() {
+        spells.removeAll()
+        currentPage = 1
+        hasNextPage = true
+        fetchSpells()
+    }
 }

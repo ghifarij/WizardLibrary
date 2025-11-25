@@ -17,8 +17,11 @@ struct CharacterDetailView: View {
     var body: some View {
         ScrollView {
             if viewModel.isLoading {
-                ProgressView()
-                    .padding()
+                VStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
             } else if let errorMessage = viewModel.errorMessage {
                 VStack {
                     Image(systemName: "exclamationmark.triangle")

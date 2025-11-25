@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct PotionListView: View {
-    @StateObject private var viewModel = PotionsViewModel()
+    @EnvironmentObject var viewModel: PotionsViewModel
     
     var body: some View {
         NavigationStack {
             Group {
                 if viewModel.isLoading && viewModel.potions.isEmpty {
-                    ProgressView()
+                    VStack {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    }
                 } else if let error = viewModel.errorMessage {
                     Text(error)
                         .foregroundStyle(.red)
@@ -39,10 +43,8 @@ struct PotionListView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Potions")
-        }
-        .onAppear {
-            if viewModel.potions.isEmpty {
-                viewModel.fetchPotions()
+            .onDisappear {
+                viewModel.resetToFirstPage()
             }
         }
     }

@@ -87,4 +87,11 @@ class PotionsViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func resetToFirstPage() {
+        potions.removeAll()
+        currentPage = 1
+        hasNextPage = true
+        fetchPotions()
+    }
 }

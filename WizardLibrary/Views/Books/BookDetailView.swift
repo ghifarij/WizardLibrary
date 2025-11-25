@@ -14,8 +14,11 @@ struct BookDetailView: View {
     var body: some View {
         ScrollView {
             if viewModel.isLoading {
-                ProgressView()
-                    .padding()
+                VStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
             } else if let error = viewModel.errorMessage {
                 VStack(spacing: 16) {
                     Image(systemName: "exclamationmark.triangle")

@@ -9,6 +9,10 @@ import SwiftUI
 
 struct MenuView: View {
     @EnvironmentObject var booksVM: BooksViewModel
+    @EnvironmentObject var charactersVM: CharactersViewModel
+    @EnvironmentObject var moviesVM: MoviesViewModel
+    @EnvironmentObject var potionsVM: PotionsViewModel
+    @EnvironmentObject var spellsVM: SpellsViewModel
     
     struct CategoryItem: Identifiable {
         let id = UUID()
@@ -27,22 +31,22 @@ struct MenuView: View {
             CategoryItem(
                 systemImage: "person",
                 title: "Characters",
-                destination: AnyView(CharacterListView())
+                destination: AnyView(CharacterListView().environmentObject(charactersVM))
             ),
             CategoryItem(
                 systemImage: "camera",
                 title: "Movies",
-                destination: AnyView(MovieListView())
+                destination: AnyView(MovieListView().environmentObject(moviesVM))
             ),
             CategoryItem(
                 systemImage: "flask",
                 title: "Potions",
-                destination: AnyView(PotionListView())
+                destination: AnyView(PotionListView().environmentObject(potionsVM))
             ),
             CategoryItem(
                 systemImage: "wand.and.sparkles",
                 title: "Spells",
-                destination: AnyView(SpellListView())
+                destination: AnyView(SpellListView().environmentObject(spellsVM))
             )
         ]
     }

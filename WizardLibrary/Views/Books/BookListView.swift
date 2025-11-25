@@ -14,7 +14,11 @@ struct BookListView: View {
         NavigationStack {
             Group {
                 if viewModel.isLoading {
-                    ProgressView()
+                    VStack {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    }
                 } else if let error = viewModel.errorMessage {
                     Text(error)
                         .foregroundStyle(.red)

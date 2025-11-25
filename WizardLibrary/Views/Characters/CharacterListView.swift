@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct CharacterListView: View {
-    @StateObject private var viewModel = CharactersViewModel()
+    @EnvironmentObject var viewModel: CharactersViewModel
     
     var body: some View {
         NavigationStack {
             Group {
                 if viewModel.isLoading && viewModel.characters.isEmpty {
-                    ProgressView()
+                    VStack {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    }
                 } else if let error = viewModel.errorMessage {
                     Text(error)
                         .foregroundStyle(.red)
@@ -39,10 +43,8 @@ struct CharacterListView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Characters")
-        }
-        .onAppear {
-            if viewModel.characters.isEmpty {
-                viewModel.fetchCharacters()
+            .onDisappear {
+                viewModel.resetToFirstPage()
             }
         }
     }

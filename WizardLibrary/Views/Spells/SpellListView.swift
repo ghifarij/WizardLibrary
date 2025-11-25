@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct SpellListView: View {
-    @StateObject private var viewModel = SpellsViewModel()
+    @EnvironmentObject var viewModel: SpellsViewModel
     
     var body: some View {
         NavigationStack {
             Group {
                 if viewModel.isLoading && viewModel.spells.isEmpty {
-                    ProgressView()
+                    VStack {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    }
                 } else if let error = viewModel.errorMessage {
                     Text(error)
                         .foregroundStyle(.red)
@@ -39,10 +43,8 @@ struct SpellListView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Spells")
-        }
-        .onAppear {
-            if viewModel.spells.isEmpty {
-                viewModel.fetchSpells()
+            .onDisappear {
+                viewModel.resetToFirstPage()
             }
         }
     }
