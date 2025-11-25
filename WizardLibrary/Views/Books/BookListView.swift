@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BookListView: View {
-    @StateObject private var viewModel = BooksViewModel()
+    @EnvironmentObject var viewModel: BooksViewModel
     
     var body: some View {
         NavigationStack {
@@ -33,9 +33,6 @@ struct BookListView: View {
                 }
             }
             .navigationTitle("Books")
-        }
-        .onAppear {
-            viewModel.fetchBooks()
         }
     }
 }

@@ -8,16 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var booksVM = BooksViewModel()
+    
     var body: some View {
         TabView {
             BookListView()
                 .tabItem {
-                    Label("Books", systemImage: "book.circle")
+                    Label("Books", systemImage: "book")
                 }
+                .environmentObject(booksVM)
             
             CharacterListView()
                 .tabItem {
-                    Label("Characters", systemImage: "person.circle")
+                    Label("Characters", systemImage: "person")
+                }
+            
+            MovieListView()
+                .tabItem {
+                    Label("Movies", systemImage: "camera")
+                }
+            
+            PotionListView()
+                .tabItem {
+                    Label("Potions", systemImage: "flask")
                 }
         }
     }

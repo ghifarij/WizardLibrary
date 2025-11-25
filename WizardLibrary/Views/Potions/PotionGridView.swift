@@ -1,14 +1,14 @@
 //
-//  CharacterGridView.swift
+//  PotionGridView.swift
 //  WizardLibrary
 //
-//  Created by Afga Ghifari on 23/11/25.
+//  Created by Afga Ghifari on 25/11/25.
 //
 
 import SwiftUI
 
-struct CharacterGridView: View {
-    let character: Character
+struct PotionGridView: View {
+    let potion: Potion
     
     private let imageHeight: CGFloat = 200
     private let imageWidth: CGFloat = 150
@@ -19,7 +19,7 @@ struct CharacterGridView: View {
             imageSection
             
             HStack {
-                Text(character.name)
+                Text(potion.name)
                     .font(.caption)
                     .lineLimit(1)
                     .padding(.horizontal)
@@ -27,7 +27,7 @@ struct CharacterGridView: View {
                 Spacer()
                 
                 Button(action: {
-                    //TODO: Navigate to CharacterDetail
+                    //TODO: Navigate to PotionDetail
                 }) {
                     Image(systemName: "chevron.right")
                         .font(.caption)
@@ -45,7 +45,7 @@ struct CharacterGridView: View {
     
     @ViewBuilder
     private var imageSection: some View {
-        let url = character.imageURL.flatMap { URL(string: $0) }
+        let url = potion.imageURL.flatMap { URL(string: $0) }
         
         CachedImage(
             url: url,
@@ -57,7 +57,7 @@ struct CharacterGridView: View {
             placeholder: {
                 ZStack {
                     Color(.systemGray5)
-                    Image(systemName: "photo")
+                    Image(systemName: "flask")
                         .font(.system(size: 48))
                         .foregroundStyle(.gray)
                 }

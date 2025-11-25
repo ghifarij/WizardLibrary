@@ -1,33 +1,32 @@
 //
-//  CharacterGridView.swift
+//  MovieCardView.swift
 //  WizardLibrary
 //
-//  Created by Afga Ghifari on 23/11/25.
+//  Created by Afga Ghifari on 25/11/25.
 //
 
 import SwiftUI
 
-struct CharacterGridView: View {
-    let character: Character
+struct MovieCardView: View {
+    let movie: Movie
     
-    private let imageHeight: CGFloat = 200
-    private let imageWidth: CGFloat = 150
-    private let cardHeight: CGFloat = 250
+    private let cardHeight: CGFloat = 500
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             imageSection
             
             HStack {
-                Text(character.name)
-                    .font(.caption)
-                    .lineLimit(1)
+                Text(movie.title)
+                    .font(.body)
+                    .fontWeight(.semibold)
+                    .lineLimit(2)
                     .padding(.horizontal)
                 
                 Spacer()
                 
                 Button(action: {
-                    //TODO: Navigate to CharacterDetail
+                    //TODO: Navigate to MovieDetail
                 }) {
                     Image(systemName: "chevron.right")
                         .font(.caption)
@@ -45,10 +44,8 @@ struct CharacterGridView: View {
     
     @ViewBuilder
     private var imageSection: some View {
-        let url = character.imageURL.flatMap { URL(string: $0) }
-        
         CachedImage(
-            url: url,
+            url: movie.posterURL,
             content: { image in
                 image
                     .resizable()
@@ -63,7 +60,33 @@ struct CharacterGridView: View {
                 }
             }
         )
-        .frame(width: .infinity, height: imageHeight)
+        .frame(maxWidth: .infinity)
         .clipped()
     }
+}
+
+#Preview {
+    let mockMovie = Movie(
+        id: "1",
+        boxOffice: "$974.8 million",
+        budget: "$125 million",
+        cinematographers: ["John Seale"],
+        directors: ["Chris Columbus"],
+        distributors: ["Warner Bros."],
+        editors: ["Richard Francis-Bruce"],
+        musicComposers: ["John Williams"],
+        posterURL: nil,
+        producers: ["David Heyman"],
+        rating: "PG",
+        releaseDate: "2001-11-16",
+        runningTime: "152 minutes",
+        screenwriters: ["Steve Kloves"],
+        slug: "philosophers-stone",
+        summary: "An orphaned boy enrolls in a school of wizardry...",
+        title: "Harry Potter and the Philosopher's Stone",
+        trailerURL: nil,
+        wikiURL: nil
+    )
+    
+    MovieCardView(movie: mockMovie)
 }

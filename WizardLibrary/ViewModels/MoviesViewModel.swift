@@ -1,15 +1,15 @@
 //
-//  BooksViewModel.swift
+//  MoviesViewModel.swift
 //  WizardLibrary
 //
-//  Created by Afga Ghifari on 23/11/25.
+//  Created by Afga Ghifari on 25/11/25.
 //
 
 import Foundation
 import Combine
 
-class BooksViewModel: ObservableObject {
-    @Published var books: [Book] = []
+class MoviesViewModel: ObservableObject {
+    @Published var movies: [Movie] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
@@ -18,27 +18,25 @@ class BooksViewModel: ObservableObject {
     
     init(networkService: NetworkServiceProtocol = NetworkService()) {
         self.networkService = networkService
-        fetchBooks()
     }
     
-    func fetchBooks() {
+    func fetchMovies() {
         isLoading = true
         errorMessage = nil
         
-        let endpoint = BooksEndpoint.getBooks.endpoint
+        let endpoint = MoviesEndpoint.getMovies.endpoint
         
-        networkService.request(endpoint, responseType: PotterBookResponse<PotterBookAttributes>.self)
-            .map { response in
-                response.data.map { $0.toDomain() }
-            }
+        networkService.request(endpoint, responseType: PotterMovieResponse.self)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
+            .sink{ [weak self] completion in
                 self?.isLoading = false
                 if case .failure(let error) = completion {
                     self?.errorMessage = error.userMessage
                 }
-            } receiveValue: { [weak self] books in
-                self?.books = books
+            } receiveValue: { [weak self] response  in
+                self?.movies = response.data.map {
+                    $0.toDomain()
+                }
             }
             .store(in: &cancellables)
     }
