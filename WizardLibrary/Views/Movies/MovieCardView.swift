@@ -58,8 +58,10 @@ struct MovieCardView: View {
                         .font(.system(size: 48))
                         .foregroundStyle(.gray)
                 }
+                .cornerRadius(12)
             }
         )
+        .scaledToFit()
         .frame(maxWidth: .infinity)
         .clipped()
     }

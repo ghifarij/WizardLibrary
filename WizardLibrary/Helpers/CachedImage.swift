@@ -39,6 +39,7 @@ struct CachedImage<Content: View, Placeholder: View>: View {
                         useKingfisher = false
                     }
                     .resizable()
+                    .cornerRadius(12)
             } else if let url = url {
                 AsyncImage(url: url) { phase in
                     switch phase {

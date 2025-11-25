@@ -11,12 +11,15 @@ struct SpellGridView: View {
     let spell: Spell
     
     private let imageHeight: CGFloat = 200
-    private let imageWidth: CGFloat = 150
     private let cardHeight: CGFloat = 250
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            imageSection
+            HStack {
+                Spacer()
+                imageSection
+                Spacer()
+            }
             
             HStack {
                 Text(spell.name)
@@ -52,7 +55,6 @@ struct SpellGridView: View {
             content: { image in
                 image
                     .resizable()
-                    .scaledToFill()
             },
             placeholder: {
                 ZStack {
@@ -61,9 +63,11 @@ struct SpellGridView: View {
                         .font(.system(size: 48))
                         .foregroundStyle(.gray)
                 }
+                .cornerRadius(12)
             }
         )
+        .scaledToFit()
         .frame(width: .infinity, height: imageHeight)
-        .clipped()
+        .padding(.top, 8)
     }
 }

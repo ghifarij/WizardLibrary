@@ -10,6 +10,7 @@ import Combine
 
 class CharactersViewModel: ObservableObject {
     @Published var characters: [Character] = []
+    @Published var selectedCharacter: Character?
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var hasNextPage: Bool = false
@@ -64,6 +65,25 @@ class CharactersViewModel: ObservableObject {
                 self?.characters.append(contentsOf: response.data.map { $0.toDomain() })
                 self?.hasNextPage = response.meta?.pagination?.hasNextPage ?? false
                 self?.currentPage = response.meta?.pagination?.current ?? 1
+            }
+            .store(in: &cancellables)
+    }
+    
+    func fetchCharacter(id: String) {
+        isLoading = true
+        errorMessage = nil
+        
+        let endpoint = CharactersEndpoint.getCharacter(id: id).endpoint
+        
+        networkService.request(endpoint, responseType: SingleCharacterResponse.self)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoading = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = error.userMessage
+                }
+            } receiveValue: { [weak self] response in
+                self?.selectedCharacter = response.data?.toDomain()
             }
             .store(in: &cancellables)
     }

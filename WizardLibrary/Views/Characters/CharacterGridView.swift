@@ -11,12 +11,15 @@ struct CharacterGridView: View {
     let character: Character
     
     private let imageHeight: CGFloat = 200
-    private let imageWidth: CGFloat = 150
     private let cardHeight: CGFloat = 250
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            imageSection
+            HStack {
+                Spacer()
+                imageSection
+                Spacer()
+            }
             
             HStack {
                 Text(character.name)
@@ -26,9 +29,7 @@ struct CharacterGridView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    //TODO: Navigate to CharacterDetail
-                }) {
+                NavigationLink(destination: CharacterDetailView(characterId: character.id)) {
                     Image(systemName: "chevron.right")
                         .font(.caption)
                         .foregroundStyle(.gray)
@@ -52,7 +53,6 @@ struct CharacterGridView: View {
             content: { image in
                 image
                     .resizable()
-                    .scaledToFill()
             },
             placeholder: {
                 ZStack {
@@ -61,9 +61,11 @@ struct CharacterGridView: View {
                         .font(.system(size: 48))
                         .foregroundStyle(.gray)
                 }
+                .cornerRadius(12)
             }
         )
+        .scaledToFit()
         .frame(width: .infinity, height: imageHeight)
-        .clipped()
+        .padding(.top, 8)
     }
 }

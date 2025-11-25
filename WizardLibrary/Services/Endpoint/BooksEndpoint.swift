@@ -7,8 +7,8 @@
 
 enum BooksEndpoint {
     case getBooks
-    case getBook(id: Int)
-    case getChapters(bookId: Int)
+    case getBook(id: String)
+    case getChapters(bookId: String)
     
     var endpoint: Endpoint {
         switch self {

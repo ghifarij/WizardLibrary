@@ -20,13 +20,15 @@ struct BookListView: View {
                         .foregroundStyle(.red)
                 } else {
                     List(viewModel.books) { book in
-                        VStack(alignment: .leading) {
-                            Text(book.title)
-                                .font(.headline)
-                            if let author = book.author {
-                                Text(author)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
+                        NavigationLink(destination: BookDetailView(bookId: book.id)) {
+                            VStack(alignment: .leading) {
+                                Text(book.title)
+                                    .font(.headline)
+                                if let author = book.author {
+                                    Text(author)
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                     }

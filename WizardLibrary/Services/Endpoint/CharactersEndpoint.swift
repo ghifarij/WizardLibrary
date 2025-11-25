@@ -8,7 +8,7 @@
 
 enum CharactersEndpoint {
     case getCharacters(page: Int)
-    case getCharacter(id: Int)
+    case getCharacter(id: String)
     
     var endpoint: Endpoint {
         switch self {

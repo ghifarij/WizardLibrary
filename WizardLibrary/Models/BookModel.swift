@@ -7,21 +7,23 @@
 
 import Foundation
 
-// MARK: - Generic JSON:API list response
+// MARK: - API Response (JSON:API format)
 
-struct PotterBookResponse<Attributes: Codable>: Codable {
-    let data: [PotterResource<Attributes>]
+struct PotterBookResponse: Codable {
+    let data: [BookResource]
 }
 
-struct PotterResource<Attributes: Codable>: Codable {
+struct SingleBookResponse: Codable, Equatable {
+    let data: BookResource?
+}
+
+struct BookResource: Codable, Equatable {
     let id: String
     let type: String
-    let attributes: Attributes
+    let attributes: BookAttributes
 }
 
-// MARK: - Book attributes from PotterDB
-
-struct PotterBookAttributes: Codable {
+struct BookAttributes: Codable, Equatable {
     let author: String?
     let cover: String?
     let dedication: String?
@@ -45,16 +47,26 @@ struct PotterBookAttributes: Codable {
     }
 }
 
-// MARK: - Chapter attributes from PotterDB
+// MARK: - Chapter Response
 
-struct PotterChapterAttributes: Codable {
+struct PotterChapterResponse: Codable {
+    let data: [ChapterResource]
+}
+
+struct ChapterResource: Codable, Equatable {
+    let id: String
+    let type: String
+    let attributes: ChapterAttributes
+}
+
+struct ChapterAttributes: Codable, Equatable {
     let order: Int?
     let slug: String
     let summary: String?
     let title: String
 }
 
-// MARK: - Domain models
+// MARK: - Domain Models
 
 struct Book: Identifiable, Equatable {
     let id: String
@@ -73,7 +85,9 @@ struct Chapter: Identifiable, Equatable {
     let summary: String?
 }
 
-extension PotterResource where Attributes == PotterBookAttributes {
+// MARK: - Extensions
+
+extension BookResource {
     func toDomain() -> Book {
         Book(
             id: id,
@@ -87,7 +101,7 @@ extension PotterResource where Attributes == PotterBookAttributes {
     }
 }
 
-extension PotterResource where Attributes == PotterChapterAttributes {
+extension ChapterResource {
     func toDomain() -> Chapter {
         Chapter(
             id: id,

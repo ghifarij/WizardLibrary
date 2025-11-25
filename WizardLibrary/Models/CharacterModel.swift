@@ -14,6 +14,10 @@ struct PotterCharacterResponse: Codable, Equatable {
     let meta: PotterPagination?
 }
 
+struct SingleCharacterResponse: Codable, Equatable {
+    let data: CharacterResource?
+}
+
 struct CharacterResource: Codable, Equatable {
     let id: String
     let type: String
