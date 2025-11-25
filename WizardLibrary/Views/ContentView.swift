@@ -32,6 +32,11 @@ struct ContentView: View {
                 .tabItem {
                     Label("Potions", systemImage: "flask")
                 }
+            
+            SpellListView()
+                .tabItem {
+                    Label("Spells", systemImage: "wand.and.sparkles")
+                }
         }
     }
 }
