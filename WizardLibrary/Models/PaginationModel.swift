@@ -6,15 +6,16 @@
 //
 
 struct PotterPagination: Codable, Equatable {
-    let pagination: PaginationDetails
+    let pagination: PaginationDetails?
 }
 
 struct PaginationDetails: Codable, Equatable {
-    let current: Int
-    let last: Int
-    let records: Int
+    let current: Int?
+    let last: Int?
+    let records: Int?
     
     var hasNextPage: Bool {
-        current < last
+        guard let current, let last else { return false }
+        return current < last
     }
 }

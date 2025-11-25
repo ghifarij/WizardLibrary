@@ -38,8 +38,8 @@ class PotionsViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] response in
                 self?.potions = response.data.map { $0.toDomain() }
-                self?.hasNextPage = response.meta.pagination.hasNextPage
-                self?.currentPage = response.meta.pagination.current
+                self?.hasNextPage = response.meta?.pagination?.hasNextPage ?? false
+                self?.currentPage = response.meta?.pagination?.current ?? 1
             }
             .store(in: &cancellables)
     }
@@ -62,8 +62,8 @@ class PotionsViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] response in
                 self?.potions.append(contentsOf: response.data.map { $0.toDomain() })
-                self?.hasNextPage = response.meta.pagination.hasNextPage
-                self?.currentPage = response.meta.pagination.current
+                self?.hasNextPage = response.meta?.pagination?.hasNextPage ?? false
+                self?.currentPage = response.meta?.pagination?.current ?? 1
             }
             .store(in: &cancellables)
     }

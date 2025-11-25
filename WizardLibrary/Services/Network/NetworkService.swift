@@ -39,7 +39,10 @@ class NetworkService: NetworkServiceProtocol {
         return session.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: T.self, decoder: JSONDecoder())
-            .mapError{ _ in NetworkError.decodingFailed }
+            .mapError{ error in
+                print(error)
+                return NetworkError.decodingFailed
+            }
             .eraseToAnyPublisher()
     }
 }

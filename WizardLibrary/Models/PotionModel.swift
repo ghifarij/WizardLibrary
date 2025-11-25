@@ -11,7 +11,7 @@ import Foundation
 
 struct PotterPotionResponse: Codable, Equatable {
     let data: [PotionResource]
-    let meta: PotterPagination
+    let meta: PotterPagination?
 }
 
 struct PotionResource: Codable, Equatable {
