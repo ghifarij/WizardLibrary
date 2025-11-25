@@ -20,6 +20,10 @@ struct PotionResource: Codable, Equatable {
     let attributes: PotionAttributes
 }
 
+struct SinglePotionResponse: Codable, Equatable {
+    let data: PotionResource?
+}
+
 struct PotionAttributes: Codable, Equatable {
     let characteristics: String?
     let difficulty: String?

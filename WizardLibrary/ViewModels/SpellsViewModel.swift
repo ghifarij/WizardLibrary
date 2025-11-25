@@ -10,6 +10,7 @@ import Combine
 
 class SpellsViewModel: ObservableObject {
     @Published var spells: [Spell] = []
+    @Published var selectedSpell: Spell?
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var hasNextPage: Bool = false
@@ -64,6 +65,25 @@ class SpellsViewModel: ObservableObject {
                 self?.spells.append(contentsOf: response.data.map { $0.toDomain() })
                 self?.hasNextPage = response.meta?.pagination?.hasNextPage ?? false
                 self?.currentPage = response.meta?.pagination?.current ?? 1
+            }
+            .store(in: &cancellables)
+    }
+    
+    func fetchSpell(id: String) {
+        isLoading = true
+        errorMessage = nil
+        
+        let endpoint = SpellsEndpoint.getSpell(id: id).endpoint
+        
+        networkService.request(endpoint, responseType: SingleSpellResponse.self)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoading = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = error.userMessage
+                }
+            } receiveValue: { [weak self] response in
+                self?.selectedSpell = response.data?.toDomain()
             }
             .store(in: &cancellables)
     }

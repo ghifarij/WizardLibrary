@@ -13,13 +13,17 @@ struct PotterMovieResponse: Codable {
     let data: [MovieResource]
 }
 
-struct MovieResource: Codable {
+struct MovieResource: Codable, Equatable {
     let id: String
     let type: String
     let attributes: MovieAttributes
 }
 
-struct MovieAttributes: Codable {
+struct SingleMovieResponse: Codable, Equatable {
+    let data: MovieResource?
+}
+
+struct MovieAttributes: Codable, Equatable {
     let boxOffice: String?
     let budget: String?
     let cinematographers: [String]?

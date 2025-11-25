@@ -20,6 +20,10 @@ struct SpellResource: Codable, Equatable {
     let attributes: SpellAttributes
 }
 
+struct SingleSpellResponse: Codable, Equatable {
+    let data: SpellResource?
+}
+
 struct SpellAttributes: Codable, Equatable {
     let category: String?
     let creator: String?

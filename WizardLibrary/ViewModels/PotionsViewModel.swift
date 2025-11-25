@@ -10,6 +10,7 @@ import Combine
 
 class PotionsViewModel: ObservableObject {
     @Published var potions: [Potion] = []
+    @Published var selectedPotion: Potion?
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var hasNextPage: Bool = false
@@ -64,6 +65,25 @@ class PotionsViewModel: ObservableObject {
                 self?.potions.append(contentsOf: response.data.map { $0.toDomain() })
                 self?.hasNextPage = response.meta?.pagination?.hasNextPage ?? false
                 self?.currentPage = response.meta?.pagination?.current ?? 1
+            }
+            .store(in: &cancellables)
+    }
+    
+    func fetchPotion(id: String) {
+        isLoading = true
+        errorMessage = nil
+        
+        let endpoint = PotionsEndpoint.getPotion(id: id).endpoint
+        
+        networkService.request(endpoint, responseType: SinglePotionResponse.self)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoading = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = error.userMessage
+                }
+            } receiveValue: { [weak self] response in
+                self?.selectedPotion = response.data?.toDomain()
             }
             .store(in: &cancellables)
     }

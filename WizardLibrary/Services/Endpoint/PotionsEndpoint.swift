@@ -7,7 +7,7 @@
 
 enum PotionsEndpoint {
     case getPotions(page: Int)
-    case getPotion(id: Int)
+    case getPotion(id: String)
     
     var endpoint: Endpoint {
         switch self {

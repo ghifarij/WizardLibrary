@@ -10,6 +10,7 @@ import Combine
 
 class MoviesViewModel: ObservableObject {
     @Published var movies: [Movie] = []
+    @Published var selectedMovie: Movie?
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
@@ -37,6 +38,25 @@ class MoviesViewModel: ObservableObject {
                 self?.movies = response.data.map {
                     $0.toDomain()
                 }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func fetchMovie(id: String) {
+        isLoading = true
+        errorMessage = nil
+        
+        let endpoint = MoviesEndpoint.getMovie(id: id).endpoint
+        
+        networkService.request(endpoint, responseType: SingleMovieResponse.self)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoading = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = error.userMessage
+                }
+            } receiveValue: { [weak self] response in
+                self?.selectedMovie = response.data?.toDomain()
             }
             .store(in: &cancellables)
     }

@@ -16,6 +16,8 @@ struct MovieCardView: View {
         VStack(alignment: .leading, spacing: 8) {
             imageSection
             
+            Spacer()
+            
             HStack {
                 Text(movie.title)
                     .font(.body)
@@ -25,11 +27,9 @@ struct MovieCardView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    //TODO: Navigate to MovieDetail
-                }) {
+                NavigationLink(destination: MovieDetailView(movieId: movie.id)) {
                     Image(systemName: "chevron.right")
-                        .font(.caption)
+                        .font(.title)
                         .foregroundStyle(.gray)
                 }
                 .padding(.horizontal)
@@ -58,12 +58,12 @@ struct MovieCardView: View {
                         .font(.system(size: 48))
                         .foregroundStyle(.gray)
                 }
+                .padding()
                 .cornerRadius(12)
             }
         )
         .scaledToFit()
         .frame(maxWidth: .infinity)
-        .clipped()
     }
 }
 

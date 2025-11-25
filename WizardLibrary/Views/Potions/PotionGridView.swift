@@ -29,9 +29,7 @@ struct PotionGridView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    //TODO: Navigate to PotionDetail
-                }) {
+                NavigationLink(destination: PotionDetailView(potionId: potion.id)) {
                     Image(systemName: "chevron.right")
                         .font(.caption)
                         .foregroundStyle(.gray)
@@ -68,5 +66,6 @@ struct PotionGridView: View {
         )
         .scaledToFit()
         .frame(width: .infinity, height: imageHeight)
+        .padding(.top, 8)
     }
 }

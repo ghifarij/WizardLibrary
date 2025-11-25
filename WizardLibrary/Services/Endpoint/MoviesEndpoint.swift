@@ -7,7 +7,7 @@
 
 enum MoviesEndpoint {
     case getMovies
-    case getMovie(id: Int)
+    case getMovie(id: String)
     
     var endpoint: Endpoint {
         switch self {

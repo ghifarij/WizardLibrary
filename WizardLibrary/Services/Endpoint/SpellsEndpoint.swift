@@ -7,7 +7,7 @@
 
 enum SpellsEndpoint {
     case getSpells(page: Int)
-    case getSpell(id: Int)
+    case getSpell(id: String)
     
     var endpoint: Endpoint {
         switch self {

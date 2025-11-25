@@ -29,9 +29,7 @@ struct SpellGridView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    //TODO: Navigate to SpellDetail
-                }) {
+                NavigationLink(destination: SpellDetailView(spellId: spell.id)) {
                     Image(systemName: "chevron.right")
                         .font(.caption)
                         .foregroundStyle(.gray)

@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CharacterDetailView: View {
     let characterId: String
+    
+    private let imageHeight: CGFloat = 300
+    
     @StateObject private var viewModel = CharactersViewModel()
     
     var body: some View {
@@ -31,21 +34,25 @@ struct CharacterDetailView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     // Character Image
                     if let imageURL = character.imageURL, let url = URL(string: imageURL) {
-                        CachedImage(
-                            url: url,
-                            content: { image in
-                                image
-                                    .resizable()
-                            },
-                            placeholder: {
-                                ProgressView()
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 200)
-                            }
-                        )
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                        .padding()
+                        HStack {
+                            Spacer()
+                            CachedImage(
+                                url: url,
+                                content: { image in
+                                    image
+                                        .resizable()
+                                },
+                                placeholder: {
+                                    ProgressView()
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 300)
+                                }
+                            )
+                            .scaledToFit()
+                            .frame(width: .infinity, height: imageHeight)
+                            
+                            Spacer()
+                        }
                     } else {
                         Image(systemName: "person.fill")
                             .resizable()
