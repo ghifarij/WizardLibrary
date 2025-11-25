@@ -1,3 +1,6 @@
+
+<img width="1024" height="1024" alt="WizardLibrary Icon-iOS-Default-1024x1024@1x" src="https://github.com/user-attachments/assets/960e0f73-5cc4-4cb4-89db-0b16d4b2d39e" />
+
 # 🧙‍♂️ WizardLibrary
 
 WizardLibrary is a SwiftUI iOS app that browses data from the [Potter DB API](https://docs.potterdb.com/) – including books, characters, movies, potions, and spells from the Harry Potter universe. It’s built with a modern MVVM architecture, Combine networking, and lazy-loading lists & grids.
@@ -86,5 +89,5 @@ You can switch to GraphQL if you ever want more flexible queries, via the `/grap
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/WizardLibrary.git
+git clone https://github.com/ghifarij/WizardLibrary.git
 cd WizardLibrary
