@@ -19,18 +19,16 @@ struct BookListView: View {
                     Text(error)
                         .foregroundStyle(.red)
                 } else {
-                    List(viewModel.books) { book in
-                        NavigationLink(destination: BookDetailView(bookId: book.id)) {
-                            VStack(alignment: .leading) {
-                                Text(book.title)
-                                    .font(.headline)
-                                if let author = book.author {
-                                    Text(author)
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
+                    ScrollView {
+                        LazyVGrid(columns: [
+                            GridItem(.flexible(), spacing: 12),
+                            GridItem(.flexible(), spacing: 12)
+                        ], spacing: 12) {
+                            ForEach(viewModel.books) { book in
+                                BookCardView(book: book)
                             }
                         }
+                        .padding()
                     }
                 }
             }

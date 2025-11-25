@@ -45,7 +45,6 @@ struct MovieDetailView: View {
                         )
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
-                        .padding()
                     } else {
                         Image(systemName: "film.fill")
                             .resizable()
@@ -56,7 +55,7 @@ struct MovieDetailView: View {
                             .padding()
                     }
                     
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: 12) {
                         // Title
                         Text(movie.title)
                             .font(.largeTitle)

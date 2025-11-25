@@ -20,7 +20,10 @@ struct MovieListView: View {
                         .foregroundStyle(.red)
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 12) {
+                        LazyVGrid(columns: [
+                            GridItem(.flexible(), spacing: 12),
+                            GridItem(.flexible(), spacing: 12)
+                        ], spacing: 12) {
                             ForEach(viewModel.movies) { movie in
                                 MovieCardView(movie: movie)
                             }

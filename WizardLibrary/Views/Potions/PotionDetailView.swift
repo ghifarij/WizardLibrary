@@ -63,7 +63,7 @@ struct PotionDetailView: View {
                             .padding()
                     }
                     
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: 12) {
                         // Name
                         Text(potion.name)
                             .font(.largeTitle)

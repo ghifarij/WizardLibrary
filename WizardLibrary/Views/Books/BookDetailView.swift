@@ -27,22 +27,26 @@ struct BookDetailView: View {
                 }
                 .padding()
             } else if let book = viewModel.selectedBook {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 0) {
                     // Book Cover
-                    if let coverURL = book.coverURL {
-                        CachedImage(
-                            url: coverURL,
-                            content: { image in
-                                image
-                                    .resizable()
-                            },
-                            placeholder: {
-                                ProgressView()
-                            }
-                        )
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                        .padding()
+                    HStack {
+                        Spacer()
+                        if let coverURL = book.coverURL {
+                            CachedImage(
+                                url: coverURL,
+                                content: { image in
+                                    image
+                                        .resizable()
+                                },
+                                placeholder: {
+                                    ProgressView()
+                                }
+                            )
+                            .scaledToFit()
+                            .frame(width: .infinity)
+                            .padding()
+                        }
+                        Spacer()
                     }
                     
                     // Book Details

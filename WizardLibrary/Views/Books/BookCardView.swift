@@ -1,5 +1,5 @@
 //
-//  MovieCardView.swift
+//  BookCardView.swift
 //  WizardLibrary
 //
 //  Created by Afga Ghifari on 25/11/25.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct MovieCardView: View {
-    let movie: Movie
-
+struct BookCardView: View {
+    let book: Book
+    
     private let cardHeight: CGFloat = 400
     
     var body: some View {
@@ -20,18 +20,19 @@ struct MovieCardView: View {
                 Spacer()
             }
             
-            NavigationLink(destination: MovieDetailView(movieId: movie.id)) {
+            NavigationLink(destination: BookDetailView(bookId: book.id)) {
                 HStack {
-                    Text(movie.title)
+                    Text(book.title)
                         .font(.caption)
                         .fontWeight(.semibold)
                         .tint(.primary)
                     
                     Spacer()
                     
-                        Image(systemName: "chevron.right")
-                            .font(.caption)
-                            .foregroundStyle(.gray)
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                    
                 }
                 .padding(.horizontal)
             }
@@ -46,7 +47,7 @@ struct MovieCardView: View {
     @ViewBuilder
     private var imageSection: some View {
         CachedImage(
-            url: movie.posterURL,
+            url: book.coverURL,
             content: { image in
                 image
                     .resizable()
@@ -54,7 +55,7 @@ struct MovieCardView: View {
             placeholder: {
                 ZStack {
                     Color(.systemGray5)
-                    Image(systemName: "photo")
+                    Image(systemName: "book.closed")
                         .font(.system(size: 48))
                         .foregroundStyle(.gray)
                 }
@@ -68,27 +69,15 @@ struct MovieCardView: View {
 }
 
 #Preview {
-    let mockMovie = Movie(
+    let mockBook = Book(
         id: "1",
-        boxOffice: "$974.8 million",
-        budget: "$125 million",
-        cinematographers: ["John Seale"],
-        directors: ["Chris Columbus"],
-        distributors: ["Warner Bros."],
-        editors: ["Richard Francis-Bruce"],
-        musicComposers: ["John Williams"],
-        posterURL: nil,
-        producers: ["David Heyman"],
-        rating: "PG",
-        releaseDate: "2001-11-16",
-        runningTime: "152 minutes",
-        screenwriters: ["Steve Kloves"],
-        slug: "philosophers-stone",
-        summary: "An orphaned boy enrolls in a school of wizardry...",
         title: "Harry Potter and the Philosopher's Stone",
-        trailerURL: nil,
-        wikiURL: nil
+        author: "J.K. Rowling",
+        summary: "The first book in the series...",
+        pages: 223,
+        releaseDate: "1997-06-26",
+        coverURL: nil
     )
     
-    MovieCardView(movie: mockMovie)
+    BookCardView(book: mockBook)
 }
