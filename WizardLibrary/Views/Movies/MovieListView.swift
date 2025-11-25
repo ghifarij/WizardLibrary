@@ -32,6 +32,7 @@ struct MovieListView: View {
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Movies")
         }
         .onAppear {

@@ -37,6 +37,7 @@ struct SpellListView: View {
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Spells")
         }
         .onAppear {

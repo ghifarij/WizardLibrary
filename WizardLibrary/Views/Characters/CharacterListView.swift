@@ -37,6 +37,7 @@ struct CharacterListView: View {
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Characters")
         }
         .onAppear {

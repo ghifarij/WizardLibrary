@@ -9,34 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var booksVM = BooksViewModel()
+    @StateObject var moviesVM = MoviesViewModel()
     
     var body: some View {
         TabView {
-            BookListView()
+            HomeView()
                 .tabItem {
-                    Label("Books", systemImage: "book")
+                    Label("Today", systemImage: "star.fill")
                 }
                 .environmentObject(booksVM)
+                .environmentObject(moviesVM)
             
-            CharacterListView()
+            MenuView()
                 .tabItem {
-                    Label("Characters", systemImage: "person")
+                    Label("Menu", systemImage: "square.grid.2x2.fill")
                 }
-            
-            MovieListView()
-                .tabItem {
-                    Label("Movies", systemImage: "camera")
-                }
-            
-            PotionListView()
-                .tabItem {
-                    Label("Potions", systemImage: "flask")
-                }
-            
-            SpellListView()
-                .tabItem {
-                    Label("Spells", systemImage: "wand.and.sparkles")
-                }
+                .environmentObject(booksVM)
         }
     }
 }

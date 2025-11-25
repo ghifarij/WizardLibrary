@@ -37,6 +37,7 @@ struct PotionListView: View {
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Potions")
         }
         .onAppear {

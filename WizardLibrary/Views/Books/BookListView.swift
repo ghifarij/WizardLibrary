@@ -32,6 +32,7 @@ struct BookListView: View {
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Books")
         }
     }
