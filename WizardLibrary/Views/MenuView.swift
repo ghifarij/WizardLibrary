@@ -18,6 +18,7 @@ struct MenuView: View {
         let id = UUID()
         let systemImage: String
         let title: String
+        let color: Color
         let destination: AnyView
     }
     
@@ -26,26 +27,31 @@ struct MenuView: View {
             CategoryItem(
                 systemImage: "book",
                 title: "Books",
+                color: .brown,
                 destination: AnyView(BookListView().environmentObject(booksVM))
             ),
             CategoryItem(
                 systemImage: "person",
                 title: "Characters",
+                color: .purple,
                 destination: AnyView(CharacterListView().environmentObject(charactersVM))
             ),
             CategoryItem(
                 systemImage: "camera",
                 title: "Movies",
+                color: .red,
                 destination: AnyView(MovieListView().environmentObject(moviesVM))
             ),
             CategoryItem(
                 systemImage: "flask",
                 title: "Potions",
+                color: .green,
                 destination: AnyView(PotionListView().environmentObject(potionsVM))
             ),
             CategoryItem(
                 systemImage: "wand.and.sparkles",
                 title: "Spells",
+                color: .blue,
                 destination: AnyView(SpellListView().environmentObject(spellsVM))
             )
         ]
@@ -53,26 +59,33 @@ struct MenuView: View {
     
     var body: some View {
         NavigationStack {
-            List(categories) { category in
-                NavigationLink(destination: category.destination) {
-                    HStack(spacing: 16) {
-                        Image(systemName: category.systemImage)
-                            .font(.title2)
-                            .foregroundColor(.blue)
-                            .frame(width: 30)
-                        
-                        Text(category.title)
-                            .font(.headline)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                            .font(.caption)
-                            .foregroundColor(.gray)
+            VStack(spacing: 12) {
+                ForEach(categories) { category in
+                    NavigationLink(destination: category.destination) {
+                        HStack(spacing: 16) {
+                            Image(systemName: category.systemImage)
+                                .font(.title2)
+                                .foregroundStyle(category.color)
+                                .frame(width: 30)
+                            
+                            Text(category.title)
+                                .font(.headline)
+                                .tint(.primary)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .font(.caption)
+                                .tint(.gray)
+                        }
                     }
-                    .padding(.vertical, 8)
+                    .padding()
+                    .glassEffect()
                 }
+                Spacer()
             }
+            .padding(.horizontal)
+            .padding(.top)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Menu")
         }
@@ -82,4 +95,8 @@ struct MenuView: View {
 #Preview {
     MenuView()
         .environmentObject(BooksViewModel())
+        .environmentObject(CharactersViewModel())
+        .environmentObject(MoviesViewModel())
+        .environmentObject(PotionsViewModel())
+        .environmentObject(SpellsViewModel())
 }
