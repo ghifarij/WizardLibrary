@@ -31,6 +31,7 @@ struct BookListView: View {
                             ForEach(viewModel.books) { book in
                                 BookCardView(book: book)
                             }
+                            .glassEffect(in: .rect(cornerRadius: 12.0))
                         }
                         .padding()
                     }

@@ -36,6 +36,7 @@ struct PotionListView: View {
                                         }
                                     }
                             }
+                            .glassEffect(in: .rect(cornerRadius: 12.0))
                         }
                         .padding()
                     }

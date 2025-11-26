@@ -32,7 +32,6 @@ struct BookCardView: View {
                     Image(systemName: "chevron.right")
                         .font(.caption)
                         .foregroundStyle(.gray)
-                    
                 }
                 .padding(.horizontal)
             }
@@ -40,8 +39,6 @@ struct BookCardView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: cardHeight)
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
     }
     
     @ViewBuilder

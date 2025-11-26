@@ -21,15 +21,15 @@ struct PotionGridView: View {
                 Spacer()
             }
             
-            HStack {
-                Text(potion.name)
-                    .font(.caption)
-                    .lineLimit(1)
-                    .padding(.horizontal)
-                
-                Spacer()
-                
-                NavigationLink(destination: PotionDetailView(potionId: potion.id)) {
+            NavigationLink(destination: PotionDetailView(potionId: potion.id)) {
+                HStack {
+                    Text(potion.name)
+                        .font(.caption)
+                        .lineLimit(1)
+                        .tint(.primary)
+                    
+                    Spacer()
+                    
                     Image(systemName: "chevron.right")
                         .font(.caption)
                         .foregroundStyle(.gray)
@@ -40,8 +40,6 @@ struct PotionGridView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: cardHeight)
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
     }
     
     @ViewBuilder

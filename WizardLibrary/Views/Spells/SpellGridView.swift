@@ -21,15 +21,15 @@ struct SpellGridView: View {
                 Spacer()
             }
             
-            HStack {
-                Text(spell.name)
-                    .font(.caption)
-                    .lineLimit(1)
-                    .padding(.horizontal)
-                
-                Spacer()
-                
-                NavigationLink(destination: SpellDetailView(spellId: spell.id)) {
+            NavigationLink(destination:SpellDetailView(spellId: spell.id)) {
+                HStack {
+                    Text(spell.name)
+                        .font(.caption)
+                        .lineLimit(1)
+                        .tint(.primary)
+                    
+                    Spacer()
+                    
                     Image(systemName: "chevron.right")
                         .font(.caption)
                         .foregroundStyle(.gray)
@@ -40,8 +40,6 @@ struct SpellGridView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: cardHeight)
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
     }
     
     @ViewBuilder

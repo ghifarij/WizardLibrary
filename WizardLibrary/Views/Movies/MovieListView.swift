@@ -31,6 +31,7 @@ struct MovieListView: View {
                             ForEach(viewModel.movies) { movie in
                                 MovieCardView(movie: movie)
                             }
+                            .glassEffect(in: .rect(cornerRadius: 12.0))
                         }
                         .padding()
                     }

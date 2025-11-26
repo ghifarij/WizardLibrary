@@ -21,18 +21,19 @@ struct CharacterGridView: View {
                 Spacer()
             }
             
-            HStack {
-                Text(character.name)
-                    .font(.caption)
-                    .lineLimit(1)
-                    .padding(.horizontal)
-                
-                Spacer()
-                
-                NavigationLink(destination: CharacterDetailView(characterId: character.id)) {
+            NavigationLink(destination: CharacterDetailView(characterId: character.id)) {
+                HStack {
+                    Text(character.name)
+                        .font(.caption)
+                        .lineLimit(1)
+                        .tint(.primary)
+                    
+                    Spacer()
+                    
                     Image(systemName: "chevron.right")
                         .font(.caption)
                         .foregroundStyle(.gray)
+                    
                 }
                 .padding(.horizontal)
             }
@@ -40,8 +41,6 @@ struct CharacterGridView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: cardHeight)
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
     }
     
     @ViewBuilder

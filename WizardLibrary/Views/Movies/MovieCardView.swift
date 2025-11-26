@@ -39,8 +39,6 @@ struct MovieCardView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: cardHeight)
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
     }
     
     @ViewBuilder
