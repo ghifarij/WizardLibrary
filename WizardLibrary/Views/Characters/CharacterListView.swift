@@ -23,22 +23,40 @@ struct CharacterListView: View {
                     Text(error)
                         .foregroundStyle(.red)
                 } else {
-                    ScrollView {
-                        LazyVGrid(columns: [
-                            GridItem(.flexible(), spacing: 12),
-                            GridItem(.flexible(), spacing: 12)
-                        ], spacing: 12) {
-                            ForEach(viewModel.characters) { character in
-                                CharacterGridView(character: character)
-                                    .onAppear {
-                                        if character.id == viewModel.characters.last?.id {
-                                            viewModel.loadMoreCharacters()
-                                        }
-                                    }
+                    VStack(spacing: 12) {
+                        HStack {
+                            Text("Sort")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                            
+                            Spacer()
+                            
+                            Picker("Sort", selection: $viewModel.sortOption) {
+                                ForEach(CharacterSortOption.allCases, id: \.self) { option in
+                                    Text(option.title).tag(option)
+                                }
                             }
-                            .glassEffect(in: .rect(cornerRadius: 12.0))
+                            .pickerStyle(.menu)
                         }
-                        .padding()
+                        .padding(.horizontal)
+                        
+                        ScrollView {
+                            LazyVGrid(columns: [
+                                GridItem(.flexible(), spacing: 12),
+                                GridItem(.flexible(), spacing: 12)
+                            ], spacing: 12) {
+                                ForEach(viewModel.sortedCharacters) { character in
+                                    CharacterGridView(character: character)
+                                        .onAppear {
+                                            if character.id == viewModel.sortedCharacters.last?.id {
+                                                viewModel.loadMoreCharacters()
+                                            }
+                                        }
+                                }
+                                .glassEffect(in: .rect(cornerRadius: 12.0))
+                            }
+                            .padding()
+                        }
                     }
                 }
             }

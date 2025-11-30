@@ -139,3 +139,17 @@ extension CharacterResource {
         )
     }
 }
+
+enum CharacterSortOption: String, CaseIterable, Codable {
+    case nameAscending
+    case nameDescending
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .nameAscending:  return "Name (A–Z)"
+        case .nameDescending: return "Name (Z–A)"
+        }
+    }
+}
